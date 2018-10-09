@@ -1,12 +1,14 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [Overview](#overview)
+  - [Target audience](#target-audience)
   - [Prerequisites](#prerequisites)
   - [Installing CLI](#installing-cli)
-    - [Installing plugin](#installing-plugin)
-  - [Logging in](#logging-in)
-    - [Use --sso and generate an API key](#use---sso-and-generate-an-api-key)
+    - [Installing plugins](#installing-plugins)
+  - [CLI Authentication](#cli-authentication)
+    - [Generating an API Key](#generating-an-api-key)
     - [Set environmental variable](#set-environmental-variable)
     - [setting resource group, region, space](#setting-resource-group-region-space)
   - [Use the ibmcloud dev plugin to deploy a starter app + cloudant](#use-the-ibmcloud-dev-plugin-to-deploy-a-starter-app--cloudant)
@@ -34,7 +36,7 @@ You have a few options for how you would like to install the IBM Cloud CLI:
 2. Run the [one-line installer](https://console.bluemix.net/docs/cli/index.html#step1). This will also install some IBM Cloud Plugins as well as tools to interact with Kubernetes and Docker. See [here](https://console.bluemix.net/docs/cli/index.html#overview) for the full list of installed components. 
 3. Use [bxshell](https://github.com/l2fprod/bxshell) which is run as a local Docker container that has the CLI and tools baked in. Pretty handy for kicking the tires. 
 
-### Installing plugin 
+### Installing plugins
 If you choose option 1 in the previous step you will also need to install a few plugins to follow along with this tutorial.
 
 ```sh
@@ -45,7 +47,7 @@ $ ibmcloud plugin install container-registry -r 'IBM Cloud'
 
 With the CLI and plugins installed we can move on to logging in to the CLI and getting our environment configured. 
 
-## Logging in 
+## CLI Authentication
 It is not considered best practice to log in to the CLI using your IBMid username and password, so we will invode the `--sso` option which will open a browser window for account log in. Once you have logged in to the account via the browser you will be redirected to a page that has a one-time passcode to use for authentication. 
 
 ```
@@ -56,9 +58,9 @@ Get One Time Code from https://iam-id-2.eu-gb.bluemix.net/identity/passcode to p
 Open the URL in the default browser? [Y/n]>Y
 ```
 
-![IBM Cloud Login page](https://dsc.cloud/quickshare/GUI-Login.png)
+![IBM Cloud Login page](images/GUI-Loginv2.png)
 
-![One Time Passcode](https://dsc.cloud/quickshare/onetimepass.png)
+![One Time Passcode](images/onetimepass.png)
 
 Once we've got the code we hop back to the terminal and complete the log in process. 
 
