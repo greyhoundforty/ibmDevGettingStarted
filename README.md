@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Overview](#overview)
   - [Target audience](#target-audience)
   - [Prerequisites](#prerequisites)
@@ -32,8 +31,8 @@ Today I will be showing you how to get up and running with deploying a simple ap
 
 You have a few options for how you would like to install the IBM Cloud CLI: 
 
-1. Download and install the [binary version](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html#install_use). If you're comfortable unziping files and understand how to move binaries in to your `PATH` then this is the option for you. 
-2. Run the [one-line installer](https://console.bluemix.net/docs/cli/index.html#step1). This will also install some IBM Cloud Plugins as well as tools to interact with Kubernetes and Docker. See [here](https://console.bluemix.net/docs/cli/index.html#overview) for the full list of installed components. 
+1. Run the [one-line installer](https://console.bluemix.net/docs/cli/index.html#step1). This will also install some IBM Cloud Plugins as well as tools to interact with Kubernetes and Docker. See [here](https://console.bluemix.net/docs/cli/index.html#overview) for the full list of installed components. Piping to bash is controversial, as it prevents you from reading code that is about to run on your system. Therefore, we provide these alternative installation methods:
+2. Download and install the [binary version](https://console.bluemix.net/docs/cli/reference/ibmcloud/download_cli.html#install_use). If you're comfortable unziping files and understand how to move binaries in to your `PATH` then this is the option for you. 
 3. Use [bxshell](https://github.com/l2fprod/bxshell) which is run as a local Docker container that has the CLI and tools baked in. Pretty handy for kicking the tires. 
 
 ### Installing plugins
@@ -93,14 +92,47 @@ Space:
 Since we've already touched on not wanting to use IBMid and password for authentication with the CLI, and generating a one-time passcode is not always practical (headless server for instance), we can create an API key that will be used for authentication instead. 
 
 ```sh
-$ ibmcloud iam api-key-create <NAME OF KEY> -d "A short description of the key, i.e. 'For use on work laptop'"
+$ ibmcloud iam api-key-create <NAME OF KEY> -d "A short description of the key"
 ```
 
-You will need to copy and paste the key somewhere safe as it will not be displayed again. 
+You will need to copy and paste the key somewhere safe as it will not be displayed again.
 
-### Set environmental variable 
+### Set environmental variable
 
-### setting resource group, region, space 
+export IBMCLOUD_API_KEY='<key copied from previous step>'
+
+### Setting Resource group, Region, and Space
+
+You can target specific pieces of your IBM Cloud environment during the login process using the IBM Cloud CLI. For instance on my account I want to target the `CDE TEAM` Organization and under that the [Resource Group](https://console.bluemix.net/docs/resources/bestpractice_rgs.html#setting-up-your-resource-groups) `CDE` and the Space `coolkids` in the US-South region:
+
+```
+$ ibmcloud login -a api.ng.bluemix.net -o "CDE TEAM" -g "CDE" -s coolkids
+
+API endpoint: api.ng.bluemix.net
+Logging in with API key from environment variable...
+Authenticating...
+OK
+
+Targeted account IBM (xxxxxxxxxxxxxxxxxxxxxxx) <-> 78003
+
+Targeted resource group CDE
+
+Targeted Cloud Foundry (https://api.ng.bluemix.net)
+
+Targeted org CDE TEAM
+
+Targeted space coolkids
+
+
+API endpoint:      https://api.ng.bluemix.net
+Region:            us-south
+User:              user@example.com
+Account:           IBM (xxxxxxxxxxxxxxxxxxxxxxx) <-> 78003
+Resource group:    CDE
+CF API endpoint:   https://api.ng.bluemix.net (API version: 2.106.0)
+Org:               CDE TEAM
+Space:             coolkids
+```
 
 ## Use the ibmcloud dev plugin to deploy a starter app + cloudant 
 
